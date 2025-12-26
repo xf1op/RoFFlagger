@@ -1,6 +1,8 @@
 # RoFFlagger - Flag list maker for Roblox client!
 **RoFFlager** is a batch script helping user create own fast flag list from allowed list onto roblox client. Supports various roblox launchers such as original, bloxstrap, froststrap and fishstrap!
 
+<img width="434" height="224" alt="image" src="https://github.com/user-attachments/assets/d1dd135a-ef37-41f8-b83f-5b2b0f885b6e" />
+
 ## Features
 
 - Custom Flag List Maker
