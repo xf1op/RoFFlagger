@@ -309,9 +309,9 @@ set f4c=0
 set f4d=0
 set f5=True
 set f5b=0
-set f6=True
+set f6=False
 set f6b=False
-set f6c=False
+set f6c=True
 set f7=True
 set f8=False
 set f9=1
@@ -403,5 +403,4 @@ rd %localappdata%\Froststrap\Logs /s /q 2>nul >nul
 echo.
 echo -- Exiting Script...
 timeout /nobreak 2 >nul
-
 exit
