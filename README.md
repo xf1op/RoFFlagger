@@ -3,4 +3,4 @@
 
 Script will not contain any bypasses such as "ixpSettings.json" or any other file overwriting. It is bannable and can result in termination as it is an cache poisoning!
 
-Launch script without administrator, it will only prompt you if it finds Roblox inside "Program Files" directory.
+Launch script without administrator, it will not prompt you for anything.
