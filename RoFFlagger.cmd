@@ -1,9 +1,7 @@
 @echo off
-:: Start of script
 title RoFFlagger - Flag list maker for Roblox
 color 0f
 mode 54,12
-:: Menu to select various options
 :mainmenu
 set x=
 cls
@@ -405,4 +403,5 @@ rd %localappdata%\Froststrap\Logs /s /q 2>nul >nul
 echo.
 echo -- Exiting Script...
 timeout /nobreak 2 >nul
+
 exit
