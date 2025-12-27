@@ -44,8 +44,9 @@ goto listMaker
 
 :OgRoLauncher
 set starter=Default
-echo -- Found Roblox Launcher
-cd %nver% && md ClientSettings && cd ClientSettings
+echo -- Found Normal Roblox Launcher
+cd %nver% && md ClientSettings 2>nul >nul
+cd ClientSettings
 echo.
 goto listMaker
 
@@ -325,7 +326,8 @@ cls
 echo -- Applying Flag List
 echo {"DFFlagDebugPauseVoxelizer": "%f1%","DFFlagDisableDPIScale": "%f2%","DFIntDebugFRMQualityLevelOverride": "%f3%","DFIntCSGLevelOfDetailSwitchingDistance": "%f4%","DFIntCSGLevelOfDetailSwitchingDistanceL12": "%f4b%","DFIntCSGLevelOfDetailSwitchingDistanceL23": "%f4c%","DFIntCSGLevelOfDetailSwitchingDistanceL34": "%f4d%","DFFlagTextureQualityOverrideEnabled": "%f5%","DFIntTextureQualityOverride": "%f5b%","FFlagDebugGraphicsPreferD3D11": "%f6%","FFlagDebugGraphicsPreferOpenGL": "%f6b%","FFlagDebugGraphicsPreferVulkan": "%f6c%","FFlagDebugSkyGray": "%f7%","FFlagHandleAltEnterFullscreenManually": "%f8%","FIntDebugForceMSAASamples": "%f9%","FIntFRMMaxGrassDistance": "%f10%","FIntFRMMinGrassDistance": "%f10b%","FIntGrassMovementReducedMotionFactor": "%f10c%"} >ClientAppSettings.json
 echo.
-echo -- Starting Roblox Client
+echo -- Flags Applied To Client
+timeout /nobreak 2 >nul
 goto launchRoblox
 
 :remove
@@ -389,13 +391,14 @@ goto mainmenu
 :launchRoblox
 echo.
 echo -- Opening Roblox Client
+timeout /nobreak 1 >nul
 if '%starter%'=='Default' start /b %nver%\RobloxPlayerBeta.exe
 if '%starter%'=='XstrapLauncher' start /b %localappdata%\%Xstrap%\%Xstrap%.exe -player
 goto end
 
 :end
 echo.
-echo -- Cleaning Roblox And Launcher Logs
+echo -- Cleaning Launcher Logs
 rd %localappdata%\Roblox\Logs /s /q 2>nul >nul
 rd %localappdata%\Bloxstrap\Logs /s /q 2>nul >nul
 rd %localappdata%\Fishstrap\Logs /s /q 2>nul >nul
