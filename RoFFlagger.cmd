@@ -1,18 +1,19 @@
 @echo off
 title RoFFlagger - Flag list maker for Roblox
 color 0f
-mode 54,12
 :mainmenu
+mode 54,13
 set x=
 cls
-echo -----             [31mRo[37mblox Flag List Maker         -----
-echo -- [Made by [32mxf1op[37m]
+echo -----             [48;5;252m[31mRo[37m[48;5;124mblox[40m Flag List Maker         -----
+echo -- [Made by [38;5;51mxf1op[37m]
 echo.
 echo --- [1] Create A New Flag List For Roblox
 echo --- [2] Remove All Flag Lists From Roblox
 echo --- [3] Clear Cached Roblox Game Assets
 echo --- [4] Open All Directories With Flag Lists
 echo --- [5] Set Custom Framerate For Roblox (Closes App)
+echo --- [6] Change Roblox Options (Closes App)
 echo.
 echo --- [0] Exit script
 echo.
@@ -22,6 +23,7 @@ if '%x%'=='2' goto remove
 if '%x%'=='3' goto clearcache
 if '%x%'=='4' goto opendirs
 if '%x%'=='5' goto customFPS
+if '%x%'=='6' taskkill /f /im RobloxPlayerBeta.exe 2>nul >nul & goto custSet
 if not '%x%'=='0' goto mainmenu
 goto end
 
@@ -374,10 +376,99 @@ taskkill /f /im RobloxPlayerBeta.exe 2>nul >nul
 set /p FPS=Amount: 
 cls
 if '%FPS%'=='' set FPS=60
-powershell -Command "(Get-Content \"%LOCALAPPDATA%\Roblox\GlobalBasicSettings_13.xml\") -replace '<int name=\"FramerateCap\">\d+</int>', '<int name=\"FramerateCap\">%FPS%</int>' | Set-Content \"%LOCALAPPDATA%\Roblox\GlobalBasicSettings_13.xml\""
+set l=%LOCALAPPDATA%\Roblox\GlobalBasicSettings_13.xml
+powershell -Command "(Get-Content \"%l%\") -replace '<int name=\"FramerateCap\">\d+</int>', '<int name=\"FramerateCap\">%FPS%</int>' | Set-Content \"%l%\""
 echo -- Value Successfully Set
 timeout /nobreak 2 >nul
 goto mainmenu
+
+set l=%LOCALAPPDATA%\Roblox\AnalysticsSettings.xml
+powershell -Command "(Get-Content \"%l%\") -replace '<string name=\"gaID\">.*?</string>', '<string name=\"gaID\">00000000-0000-0000-0000-000000000000</string>' | Set-Content \"%l%\"; Write-Output 'Analytics ID Disabled'"
+
+set l=%LOCALAPPDATA%\Roblox\GlobalBasicSettings_13.xml
+set o=AllTutorialsDisabled
+powershell -Command "if ((Get-Content \"%l%\") -match '\"%o%\">false') { (Get-Content \"%l%\") -replace '\"%o%\">false', '\"%o%\">true' | Set-Content \"%l%\"; Write-Output '%o% = true' } elseif ((Get-Content \"%l%\") -match '\"%o%\">true') { (Get-Content \"%l%\") -replace '\"%o%\">true', '\"%o%\">false' | Set-Content \"%l%\"; Write-Output '%o% = false' }"
+
+:custSet
+mode 54,12
+set x=
+cls
+echo -----         Customize Roblox Settings!         -----
+echo        ([33mUsing Option Twice Sets Settings Back![37m)
+echo --- [1] Auto Start And Tray Icon
+echo --- [2] "Google Ads ID" Settings ([31mcan't[37m revert)
+echo --- [3] [32mOptional[37m Tracking Blocker (as Admin)
+echo --- [4] Other / Unnecessary Settings
+echo.
+echo.
+echo --- [0] Go Back
+echo.
+set /p x=-- Number: 
+if '%x%'=='1' goto autoStart
+if '%x%'=='2' goto analyticsID
+if '%x%'=='3' goto blockList
+if '%x%'=='4' goto otherSettings
+if not '%x%'=='0' goto custSet
+goto mainmenu
+
+:autoStart
+cls
+set l=%LOCALAPPDATA%\Roblox\LocalStorage\appStorage.json
+echo Changing settings...
+powershell -Command "if ((Get-Content \"%l%\") -match '\"LaunchAtStartup\":\"true\"') { (Get-Content \"%l%\") -replace '\"LaunchAtStartup\":\"true\"','\"LaunchAtStartup\":\"false\"' | Set-Content \"%l%\"; Write-Output 'LaunchAtStartup = false' } elseif ((Get-Content \"%l%\") -match '\"LaunchAtStartup\":\"false\"') { (Get-Content \"%l%\") -replace '\"LaunchAtStartup\":\"false\"','\"LaunchAtStartup\":\"true\"' | Set-Content \"%l%\"; Write-Output 'LaunchAtStartup = true' }"
+powershell -Command "if ((Get-Content \"%l%\") -notmatch '\"LaunchAtStartup\":\"true\"') { (Get-Content \"%l%\") -replace '\"MinimizeToTray\":\"true\"','\"MinimizeToTray\":\"false\"' | Set-Content \"%l%\"; Write-Output 'MinimizeToTray = false' } elseif ((Get-Content \"%l%\") -notmatch '\"LaunchAtStartup\":\"false\"') { (Get-Content \"%l%\") -replace '\"MinimizeToTray\":\"false\"','\"MinimizeToTray\":\"true\"' | Set-Content \"%l%\"; Write-Output 'MinimizeToTray = true' }"
+timeout 2 >nul
+goto custSet
+
+:analyticsID
+set l=%LOCALAPPDATA%\Roblox\AnalysticsSettings.xml
+echo Changing settings...
+powershell -Command "(Get-Content \"%l%\") -replace '<string name=\"gaID\">.*?</string>', '<string name=\"gaID\">00000000-0000-0000-0000-000000000000</string>' | Set-Content \"%l%\"; Write-Output 'Analytics ID Disabled'"
+timeout 2 >nul
+goto custSet
+
+:blockList
+cls
+
+wevtutil cl system 2>nul >nul
+if ErrorLevel 1 (echo This requires Administrator permissions! && call :adminPerms)
+if exist "C:\Windows\System32\drivers\etc\hosts" erase /f /q "C:\Windows\System32\drivers\etc\hosts" >nul && echo Removed list. && timeout 2 >nul && goto custSet
+echo # Roblox Tracking Block List >"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 ecsv2.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 metrics.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 client-telemetry.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 gold.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 tracing.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 ncs.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 lms.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 ephemeralcounters.api.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo Created tracking block list successfully.
+timeout 4 >nul
+goto custSet
+
+:otherSettings
+cls
+set l=%LOCALAPPDATA%\Roblox\GlobalBasicSettings_13.xml
+set o=AllTutorialsDisabled
+powershell -Command "if ((Get-Content \"%l%\") -match '\"%o%\">false') { (Get-Content \"%l%\") -replace '\"%o%\">false', '\"%o%\">true' | Set-Content \"%l%\"; Write-Output '%o% = true' } elseif ((Get-Content \"%l%\") -match '\"%o%\">true') { (Get-Content \"%l%\") -replace '\"%o%\">true', '\"%o%\">false' | Set-Content \"%l%\"; Write-Output '%o% = false' }"
+set o=ReducedMotion
+powershell -Command "if ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">true') { (Get-Content \"%l%\") -replace '\"%o%\">false', '\"%o%\">true' | Set-Content \"%l%\"; Write-Output '%o% = true' } elseif ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">false') { (Get-Content \"%l%\") -replace '\"%o%\">true', '\"%o%\">false' | Set-Content \"%l%\"; Write-Output '%o% = false' }"
+set o=HasEverUsedVR
+powershell -Command "if ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">true') { (Get-Content \"%l%\") -replace '\"%o%\">false', '\"%o%\">true' | Set-Content \"%l%\"; Write-Output '%o% = true' } elseif ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">false') { (Get-Content \"%l%\") -replace '\"%o%\">true', '\"%o%\">false' | Set-Content \"%l%\"; Write-Output '%o% = false' }"
+set o=RCCProfilerRecordFrameRate
+powershell -Command "if ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">true') { (Get-Content \"%l%\") -replace '\"%o%\">1', '\"%o%\">0' | Set-Content \"%l%\"; Write-Output '%o% = 0' } elseif ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">false') { (Get-Content \"%l%\") -replace '\"%o%\">0', '\"%o%\">1' | Set-Content \"%l%\"; Write-Output '%o% = 1' }"
+set o=RCCProfilerRecordTimeFrame
+powershell -Command "if ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">true') { (Get-Content \"%l%\") -replace '\"%o%\">1', '\"%o%\">0' | Set-Content \"%l%\"; Write-Output '%o% = 0' } elseif ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">false') { (Get-Content \"%l%\") -replace '\"%o%\">0', '\"%o%\">1' | Set-Content \"%l%\"; Write-Output '%o% = 1' }"
+set o=VignetteEnabled
+powershell -Command "if ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">true') { (Get-Content \"%l%\") -replace '\"%o%\">true', '\"%o%\">false' | Set-Content \"%l%\"; Write-Output '%o% = false' } elseif ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">false') { (Get-Content \"%l%\") -replace '\"%o%\">false', '\"%o%\">true' | Set-Content \"%l%\"; Write-Output '%o% = true' }"
+set o=VignetteEnabledCustomOption
+powershell -Command "if ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">true') { (Get-Content \"%l%\") -replace '\"%o%\">true', '\"%o%\">false' | Set-Content \"%l%\"; Write-Output '%o% = false' } elseif ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">false') { (Get-Content \"%l%\") -replace '\"%o%\">false', '\"%o%\">true' | Set-Content \"%l%\"; Write-Output '%o% = true' }"
+set o=VREnabled
+powershell -Command "if ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">true') { (Get-Content \"%l%\") -replace '\"%o%\">true', '\"%o%\">false' | Set-Content \"%l%\"; Write-Output '%o% = false' } elseif ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">false') { (Get-Content \"%l%\") -replace '\"%o%\">false', '\"%o%\">true' | Set-Content \"%l%\"; Write-Output '%o% = true' }"
+set o=HapticStrength
+powershell -Command "if ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">true') { (Get-Content \"%l%\") -replace '\"%o%\">1', '\"%o%\">0' | Set-Content \"%l%\"; Write-Output '%o% = 0' } elseif ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">false') { (Get-Content \"%l%\") -replace '\"%o%\">0', '\"%o%\">1' | Set-Content \"%l%\"; Write-Output '%o% = 1' }"
+timeout 2 >nul
+goto custSet
 
 :NoRobloxInstalled
 echo -- Roblox Client Is Not Installed!!
@@ -407,3 +498,15 @@ echo.
 echo -- Exiting Script...
 timeout /nobreak 2 >nul
 exit
+
+:adminPerms
+echo.
+echo Would you like to restart script as Administrator?
+echo - [y] Yes
+echo - Press Enter to continue without administrator.
+set /p s=Letter: 
+if /i '%s%'=='y' (
+    powershell -Command "Start-Process -FilePath '%~f0' -Verb RunAs"
+    exit
+)
+goto startmenu
