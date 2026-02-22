@@ -408,7 +408,9 @@ goto mainmenu
 cls
 set l=%LOCALAPPDATA%\Roblox\LocalStorage\appStorage.json
 echo Changing settings...
+powershell -Command "if ((Get-Content \"%l%\") -notmatch '\"LaunchAtStartup\"') { (Get-Content \"%l%\") -replace '}\s*$',',\"LaunchAtStartup\":\"true\"}' | Set-Content \"%l%\"; Write-Output 'Added missing LaunchAtStartup' }"
 powershell -Command "if ((Get-Content \"%l%\") -match '\"LaunchAtStartup\":\"true\"') { (Get-Content \"%l%\") -replace '\"LaunchAtStartup\":\"true\"','\"LaunchAtStartup\":\"false\"' | Set-Content \"%l%\"; Write-Output 'LaunchAtStartup = false' } elseif ((Get-Content \"%l%\") -match '\"LaunchAtStartup\":\"false\"') { (Get-Content \"%l%\") -replace '\"LaunchAtStartup\":\"false\"','\"LaunchAtStartup\":\"true\"' | Set-Content \"%l%\"; Write-Output 'LaunchAtStartup = true' }"
+powershell -Command "if ((Get-Content \"%l%\") -notmatch '\"MinimizeToTray\"') { (Get-Content \"%l%\") -replace '}\s*$',',\"MinimizeToTray\":\"true\"}' | Set-Content \"%l%\"; Write-Output 'Added missing MinimizeToTray' }"
 powershell -Command "if ((Get-Content \"%l%\") -notmatch '\"LaunchAtStartup\":\"true\"') { (Get-Content \"%l%\") -replace '\"MinimizeToTray\":\"true\"','\"MinimizeToTray\":\"false\"' | Set-Content \"%l%\"; Write-Output 'MinimizeToTray = false' } elseif ((Get-Content \"%l%\") -notmatch '\"LaunchAtStartup\":\"false\"') { (Get-Content \"%l%\") -replace '\"MinimizeToTray\":\"false\"','\"MinimizeToTray\":\"true\"' | Set-Content \"%l%\"; Write-Output 'MinimizeToTray = true' }"
 timeout 2 >nul
 goto custSet
