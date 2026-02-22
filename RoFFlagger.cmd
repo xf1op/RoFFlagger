@@ -382,13 +382,6 @@ echo -- Value Successfully Set
 timeout /nobreak 2 >nul
 goto mainmenu
 
-set l=%LOCALAPPDATA%\Roblox\AnalysticsSettings.xml
-powershell -Command "(Get-Content \"%l%\") -replace '<string name=\"gaID\">.*?</string>', '<string name=\"gaID\">00000000-0000-0000-0000-000000000000</string>' | Set-Content \"%l%\"; Write-Output 'Analytics ID Disabled'"
-
-set l=%LOCALAPPDATA%\Roblox\GlobalBasicSettings_13.xml
-set o=AllTutorialsDisabled
-powershell -Command "if ((Get-Content \"%l%\") -match '\"%o%\">false') { (Get-Content \"%l%\") -replace '\"%o%\">false', '\"%o%\">true' | Set-Content \"%l%\"; Write-Output '%o% = true' } elseif ((Get-Content \"%l%\") -match '\"%o%\">true') { (Get-Content \"%l%\") -replace '\"%o%\">true', '\"%o%\">false' | Set-Content \"%l%\"; Write-Output '%o% = false' }"
-
 :custSet
 mode 54,12
 set x=
@@ -429,25 +422,34 @@ goto custSet
 
 :blockList
 cls
-
 wevtutil cl system 2>nul >nul
 if ErrorLevel 1 (echo This requires Administrator permissions! && call :adminPerms)
+echo Changing settings...
 if exist "C:\Windows\System32\drivers\etc\hosts" erase /f /q "C:\Windows\System32\drivers\etc\hosts" >nul && echo Removed list. && timeout 2 >nul && goto custSet
-echo # Roblox Tracking Block List >"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 ecsv2.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 metrics.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo # Roblox Tracking Block List >>"C:\Windows\System32\drivers\etc\hosts"
 echo 0.0.0.0 client-telemetry.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 gold.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 tracing.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 ncs.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 lms.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 ecsv2.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
 echo 0.0.0.0 ephemeralcounters.api.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo Created tracking block list successfully.
+echo 0.0.0.0 gameinternationalization.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 gold.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 lms.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 metrics.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 ncs.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 sc0.rbxcdn.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 sc0ak.rbxcdn.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 sc0aws.rbxcdn.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 sc0cfly.rbxcdn.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 sc0ns1.rbxcdn.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 sc0rcc.rbxcdn.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 tracing.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 upload.crashes.rbxinfra.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo Created block list successfully.
 timeout 4 >nul
 goto custSet
 
 :otherSettings
 cls
+echo Changing settings...
 set l=%LOCALAPPDATA%\Roblox\GlobalBasicSettings_13.xml
 set o=AllTutorialsDisabled
 powershell -Command "if ((Get-Content \"%l%\") -match '\"%o%\">false') { (Get-Content \"%l%\") -replace '\"%o%\">false', '\"%o%\">true' | Set-Content \"%l%\"; Write-Output '%o% = true' } elseif ((Get-Content \"%l%\") -match '\"%o%\">true') { (Get-Content \"%l%\") -replace '\"%o%\">true', '\"%o%\">false' | Set-Content \"%l%\"; Write-Output '%o% = false' }"
