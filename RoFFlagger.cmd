@@ -428,7 +428,7 @@ wevtutil cl system 2>nul >nul
 if ErrorLevel 1 (echo This requires Administrator permissions! && call :adminPerms)
 echo Changing settings...
 if exist "C:\Windows\System32\drivers\etc\hosts" erase /f /q "C:\Windows\System32\drivers\etc\hosts" >nul && echo Removed list. && timeout 2 >nul && goto custSet
-echo # Roblox Tracking Block List >>"C:\Windows\System32\drivers\etc\hosts"
+echo # Roblox Tracking Block List >"C:\Windows\System32\drivers\etc\hosts"
 echo 0.0.0.0 client-telemetry.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
 echo 0.0.0.0 ecsv2.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
 echo 0.0.0.0 ephemeralcounters.api.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
