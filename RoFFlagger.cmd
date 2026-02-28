@@ -5,8 +5,8 @@ color 0f
 mode 54,13
 set x=
 cls
-echo -----             [48;5;252m[31mRo[37m[48;5;124mblox[40m Flag List Maker         -----
-echo -- [Made by [38;5;51mxf1op[37m]
+echo -----             Roblox Flag List Maker         -----
+echo -- [Made by xf1op]
 echo.
 echo --- [1] Create A New Flag List For Roblox
 echo --- [2] Remove All Flag Lists From Roblox
@@ -387,10 +387,11 @@ mode 54,12
 set x=
 cls
 echo -----         Customize Roblox Settings!         -----
-echo        ([33mUsing Option Twice Sets Settings Back![37m)
+echo        (Using Option Twice Sets Settings Back!)
+echo.
 echo --- [1] Auto Start And Tray Icon
-echo --- [2] "Google Ads ID" Settings ([31mcan't[37m revert)
-echo --- [3] [32mOptional[37m Tracking Blocker (as Admin)
+echo --- [2] Erase "Google Ads ID" (can't revert)
+echo --- [3] Telemetry Blocker (starts as Admin)
 echo --- [4] Other / Unnecessary Settings
 echo.
 echo.
@@ -424,10 +425,12 @@ goto custSet
 
 :blockList
 cls
+echo Changing settings...
 wevtutil cl system 2>nul >nul
 if ErrorLevel 1 (echo This requires Administrator permissions! && call :adminPerms)
-echo Changing settings...
-if exist "C:\Windows\System32\drivers\etc\hosts" erase /f /q "C:\Windows\System32\drivers\etc\hosts" >nul && echo Removed list. && timeout 2 >nul && goto custSet
+wevtutil cl system 2>nul >nul
+if ErrorLevel 1 (echo Can't continue without administrator! && timeout 2 >nul && goto custSet)
+if exist "C:\Windows\System32\drivers\etc\hosts" erase /f /q "C:\Windows\System32\drivers\etc\hosts" >nul && echo Removed hosts list / not if access denied above. & timeout 2 >nul & goto custSet
 echo # Roblox Tracking Block List >"C:\Windows\System32\drivers\etc\hosts"
 echo 0.0.0.0 client-telemetry.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
 echo 0.0.0.0 ecsv2.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
@@ -446,7 +449,7 @@ echo 0.0.0.0 sc0rcc.rbxcdn.com >>"C:\Windows\System32\drivers\etc\hosts"
 echo 0.0.0.0 tracing.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
 echo 0.0.0.0 upload.crashes.rbxinfra.com >>"C:\Windows\System32\drivers\etc\hosts"
 echo Created block list successfully.
-timeout 4 >nul
+timeout 3 >nul
 goto custSet
 
 :otherSettings
@@ -513,4 +516,3 @@ if /i '%s%'=='y' (
     powershell -Command "Start-Process -FilePath '%~f0' -Verb RunAs"
     exit
 )
-goto startmenu
