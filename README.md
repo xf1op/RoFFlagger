@@ -9,11 +9,14 @@
 - Presets Of Flag List
 - Remove All Flag Lists
 - Clear Roblox Game Cache
-- Open Directory Of Roblox ClientSettings
+- Open Directories Of ClientSettings
 - Set Custom FPS
+- Block Telemetry
+- Disable Auto Start / Tray Icon
+- Change Roblox Options In A File
 
 Script will not contain any bypasses such as "ixpSettings.json" or any other file overwriting. It is bannable and can result in termination as it is an cache poisoning!
 
 Launch script without administrator, it will not prompt you for anything.
 
-VirusTotal Check 1/82 (changes host list that's why): https://www.virustotal.com/gui/file/b692f61201e3c946b0b0ebb380039b0c4fc3fbeb3c0b5c1ede5a87ef2e9b9f9e?nocache=1
+VirusTotal Check 0/82: https://www.virustotal.com/gui/file/ff9ccc0c25cc9125b209a51b16c81c387d547bc8aaddb33c0a1079f4ab9e837e?nocache=1
