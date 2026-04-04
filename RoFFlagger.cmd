@@ -448,6 +448,11 @@ echo 0.0.0.0 sc0ns1.rbxcdn.com >>"C:\Windows\System32\drivers\etc\hosts"
 echo 0.0.0.0 sc0rcc.rbxcdn.com >>"C:\Windows\System32\drivers\etc\hosts"
 echo 0.0.0.0 tracing.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
 echo 0.0.0.0 upload.crashes.rbxinfra.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 fts.rbxcdn.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 chi1-ephemeralcounters.api.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 gamecounters.api.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 ephemeralcounters.api.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
+echo 0.0.0.0 durablecounters.api.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
 echo Created block list successfully.
 timeout 3 >nul
 goto custSet
