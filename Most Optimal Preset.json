@@ -1,0 +1,10 @@
+{
+  "DFIntCSGLevelOfDetailSwitchingDistance": "250",
+  "DFIntCSGLevelOfDetailSwitchingDistanceL12": "250",
+  "DFIntCSGLevelOfDetailSwitchingDistanceL23": "250",
+  "DFIntCSGLevelOfDetailSwitchingDistanceL34": "250",
+  "FIntDebugForceMSAASamples": "1",
+  "FIntFRMMaxGrassDistance": "0",
+  "FIntFRMMinGrassDistance": "0",
+  "FIntGrassMovementReducedMotionFactor": "0"
+}
