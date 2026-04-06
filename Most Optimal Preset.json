@@ -1,4 +1,6 @@
 {
+  "DFFlagTextureQualityOverrideEnabled": "True",
+  "DFIntTextureQualityOverride": "2",
   "DFIntCSGLevelOfDetailSwitchingDistance": "250",
   "DFIntCSGLevelOfDetailSwitchingDistanceL12": "250",
   "DFIntCSGLevelOfDetailSwitchingDistanceL23": "250",
