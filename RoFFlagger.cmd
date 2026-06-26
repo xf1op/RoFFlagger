@@ -60,11 +60,11 @@ set x=
 cls
 echo -----             Flag List Creator!             -----
 echo.
-echo --- [1] Create A Custom Set
-echo --- [2] Use Maximum Quality Set
-echo --- [3] Use Balanced Set
-echo --- [4] Use Performance Set
-echo --- [5] Use Maximum Performance (Worst Texture Look)
+echo --- [1] Create A Custom List
+echo --- [2] Use Maximum Quality List
+echo --- [3] Use Balanced List
+echo --- [4] Use Performance List (Recommended)
+echo --- [5] Use Maximum Performance List (Worst Quality)
 echo.
 echo.
 echo --- [0] Go Back
@@ -253,11 +253,10 @@ set f6=True
 set f6b=False
 set f6c=False
 set f7=False
-set f8=False
-set f9=8
-set f10=4000
-set f10b=4000
-set f10c=10
+set f8=8
+set f9=4000
+set f9b=4000
+set f9c=10
 goto finish
 
 :balanced
@@ -274,32 +273,24 @@ set f6=True
 set f6b=False
 set f6c=False
 set f7=False
-set f8=False
-set f9=2
-set f10=100
-set f10b=50
-set f10c=5
+set f8=2
+set f9=100
+set f9b=50
+set f9c=5
 goto finish
 
 :performance
-set f1=False
-set f2=False
-set f3=-1
 set f4=250
 set f4b=250
 set f4c=250
 set f4d=250
 set f5=True
 set f5b=2
-set f6=True
-set f6b=False
-set f6c=False
-set f7=False
-set f8=False
-set f9=1
-set f10=0
-set f10b=0
-set f10c=0
+set f8=1
+set f9=0
+set f9b=0
+set f9c=0
+set perf=True
 goto finish
 
 :maxperformance
@@ -316,17 +307,20 @@ set f6=False
 set f6b=False
 set f6c=True
 set f7=True
-set f8=False
-set f9=1
-set f10=0
-set f10b=0
-set f10c=0
+set f8=1
+set f9=0
+set f9b=0
+set f9c=0
 goto finish
 
 :finish
 cls
 echo -- Applying Flag List
-echo {"DFFlagDebugPauseVoxelizer": "%f1%","DFFlagDisableDPIScale": "%f2%","DFIntDebugFRMQualityLevelOverride": "%f3%","DFIntCSGLevelOfDetailSwitchingDistance": "%f4%","DFIntCSGLevelOfDetailSwitchingDistanceL12": "%f4b%","DFIntCSGLevelOfDetailSwitchingDistanceL23": "%f4c%","DFIntCSGLevelOfDetailSwitchingDistanceL34": "%f4d%","DFFlagTextureQualityOverrideEnabled": "%f5%","DFIntTextureQualityOverride": "%f5b%","FFlagDebugGraphicsPreferD3D11": "%f6%","FFlagDebugGraphicsPreferOpenGL": "%f6b%","FFlagDebugGraphicsPreferVulkan": "%f6c%","FFlagDebugSkyGray": "%f7%","FFlagHandleAltEnterFullscreenManually": "%f8%","FIntDebugForceMSAASamples": "%f9%","FIntFRMMaxGrassDistance": "%f10%","FIntFRMMinGrassDistance": "%f10b%","FIntGrassMovementReducedMotionFactor": "%f10c%"} >ClientAppSettings.json
+attrib -R "ClientAppSettings.json"
+if %perf%==True (echo {"DFIntCSGLevelOfDetailSwitchingDistance": "%f4%","DFIntCSGLevelOfDetailSwitchingDistanceL12": "%f4b%","DFIntCSGLevelOfDetailSwitchingDistanceL23": "%f4c%","DFIntCSGLevelOfDetailSwitchingDistanceL34": "%f4d%","DFFlagTextureQualityOverrideEnabled": "%f5%","DFIntTextureQualityOverride": "%f5b%","FIntDebugForceMSAASamples": "%f8%","FIntFRMMaxGrassDistance": "%f9%","FIntFRMMinGrassDistance": "%f9b%","FIntGrassMovementReducedMotionFactor": "%f9c%"} >ClientAppSettings.json && goto skipDefault)
+echo {"DFFlagDebugPauseVoxelizer": "%f1%","DFFlagDisableDPIScale": "%f2%","DFIntDebugFRMQualityLevelOverride": "%f3%","DFIntCSGLevelOfDetailSwitchingDistance": "%f4%","DFIntCSGLevelOfDetailSwitchingDistanceL12": "%f4b%","DFIntCSGLevelOfDetailSwitchingDistanceL23": "%f4c%","DFIntCSGLevelOfDetailSwitchingDistanceL34": "%f4d%","DFFlagTextureQualityOverrideEnabled": "%f5%","DFIntTextureQualityOverride": "%f5b%","FFlagDebugGraphicsPreferD3D11": "%f6%","FFlagDebugGraphicsPreferOpenGL": "%f6b%","FFlagDebugGraphicsPreferVulkan": "%f6c%","FFlagDebugSkyGray": "%f7%","FIntDebugForceMSAASamples": "%f8%","FIntFRMMaxGrassDistance": "%f9%","FIntFRMMinGrassDistance": "%f9b%","FIntGrassMovementReducedMotionFactor": "%f9c%"} >ClientAppSettings.json
+:skipDefault
+attrib +R "ClientAppSettings.json"
 echo.
 echo -- Flags Applied To Client
 timeout /nobreak 2 >nul
@@ -429,30 +423,11 @@ echo Changing settings...
 wevtutil cl system 2>nul >nul
 if ErrorLevel 1 (echo This requires Administrator permissions! && call :adminPerms)
 wevtutil cl system 2>nul >nul
-if ErrorLevel 1 (echo Can't continue without administrator! && timeout 2 >nul && goto custSet)
-if exist "C:\Windows\System32\drivers\etc\hosts" erase /f /q "C:\Windows\System32\drivers\etc\hosts" >nul && echo Removed hosts list / not if access denied above. & timeout 2 >nul & goto custSet
-echo # Roblox Tracking Block List >"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 client-telemetry.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 ecsv2.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 ephemeralcounters.api.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 gameinternationalization.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 gold.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 lms.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 metrics.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 ncs.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 sc0.rbxcdn.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 sc0ak.rbxcdn.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 sc0aws.rbxcdn.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 sc0cfly.rbxcdn.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 sc0ns1.rbxcdn.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 sc0rcc.rbxcdn.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 tracing.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 upload.crashes.rbxinfra.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 chi1-ephemeralcounters.api.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 gamecounters.api.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 ephemeralcounters.api.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo 0.0.0.0 durablecounters.api.roblox.com >>"C:\Windows\System32\drivers\etc\hosts"
-echo Created block list successfully.
+powershell -NoProfile -Command "iwr 'https://raw.githubusercontent.com/xf1op/RoFFlagger/refs/heads/main/Roblox-Blocklist.ps1' -OutFile $env:TEMP\RobloxBlocklist.ps1"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%temp%\RobloxBlocklist.ps1"
+cls
+echo.
+echo Adding Roblox Blocklist complete!
 timeout 3 >nul
 goto custSet
 
