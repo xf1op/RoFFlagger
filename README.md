@@ -19,4 +19,4 @@ Script will not contain any bypasses such as "ixpSettings.json" or any other fil
 
 Launch script without administrator, it will not prompt you for anything.
 
-VirusTotal Check 0/82: https://www.virustotal.com/gui/file/ff9ccc0c25cc9125b209a51b16c81c387d547bc8aaddb33c0a1079f4ab9e837e?nocache=1
+VirusTotal Check 0/82: https://www.virustotal.com/gui/file/5f1f0b4526f48457017c5e60c153b0e3c41e80e3b502fde6db5ca8b5c74674ee?nocache=1
