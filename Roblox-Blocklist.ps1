@@ -26,7 +26,6 @@ $domains = @(
     "sin6-128-116-54-3.roblox.com"
     "sin6c2-128-116-46-3.roblox.com"
     "syd1-128-116-51-3.roblox.com"
-    "clientsettingscdn.roblox.com"
     "contacts.roblox.com"
     "ecsv2.roblox.com"
     "edge-term4-fra4.roblox.com"
