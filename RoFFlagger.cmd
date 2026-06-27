@@ -386,7 +386,8 @@ echo.
 echo --- [1] Auto Start And Tray Icon
 echo --- [2] Erase "Google Ads ID" (can't revert)
 echo --- [3] Telemetry Blocker (starts as Admin)
-echo --- [4] Other / Unnecessary Settings
+echo --- [4] Fix Roblox Studio (starts as Admin)
+echo --- [5] Other / Unnecessary Settings
 echo.
 echo.
 echo --- [0] Go Back
@@ -395,7 +396,8 @@ set /p x=-- Number:
 if '%x%'=='1' goto autoStart
 if '%x%'=='2' goto analyticsID
 if '%x%'=='3' goto blockList
-if '%x%'=='4' goto otherSettings
+if '%x%'=='4' goto blockListStudioFix
+if '%x%'=='5' goto otherSettings
 if not '%x%'=='0' goto custSet
 goto mainmenu
 
@@ -425,9 +427,21 @@ if ErrorLevel 1 (echo This requires Administrator permissions! && call :adminPer
 wevtutil cl system 2>nul >nul
 powershell -NoProfile -Command "iwr 'https://raw.githubusercontent.com/xf1op/RoFFlagger/refs/heads/main/Roblox-Blocklist.ps1' -OutFile $env:TEMP\RobloxBlocklist.ps1"
 powershell -NoProfile -ExecutionPolicy Bypass -File "%temp%\RobloxBlocklist.ps1"
-cls
 echo.
 echo Adding Roblox Blocklist complete!
+timeout 3 >nul
+goto custSet
+
+:blocklistStudioFix
+cls
+echo Changing settings...
+wevtutil cl system 2>nul >nul
+if ErrorLevel 1 (echo This requires Administrator permissions! && call :adminPerms)
+wevtutil cl system 2>nul >nul
+powershell -NoProfile -Command "iwr 'https://raw.githubusercontent.com/xf1op/RoFFlagger/refs/heads/main/Fix-Studio-Unblock-IP.ps1' -OutFile $env:TEMP\RobloxStudioFix.ps1"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%temp%\RobloxStudioFix.ps1"
+echo.
+echo Fixing Roblox Studio Complete!
 timeout 3 >nul
 goto custSet
 
