@@ -12,7 +12,7 @@ $newContent = $content | Where-Object {
     $line = $_
 
     foreach ($domain in $domainsToRemove) {
-        if ($line -like "*$domain*") {
+        if ($line -contains "0.0.0.0 $domain") {
             $found = $true
             return $false
         }
