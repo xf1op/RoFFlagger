@@ -36,7 +36,6 @@ $domains = @(
     "lms.roblox.com"
     "metrics.roblox.com"
     "realtime-signalr.roblox.com"
-    "roblox-poc.global.ssl.fastly.net"
     "sc0.rbxcdn.com"
     "sc0ak.rbxcdn.com"
     "sc0aws.rbxcdn.com"
