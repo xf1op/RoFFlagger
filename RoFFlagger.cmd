@@ -387,7 +387,8 @@ echo --- [1] Auto Start And Tray Icon
 echo --- [2] Erase "Google Ads ID" (can't revert)
 echo --- [3] Telemetry Blocker (starts as Admin)
 echo --- [4] Fix Roblox Studio (starts as Admin)
-echo --- [5] Other / Unnecessary Settings
+echo --- [5] Fix VC Games (starts as Admin)
+echo --- [6] Other / Unnecessary Settings
 echo.
 echo.
 echo --- [0] Go Back
@@ -397,7 +398,8 @@ if '%x%'=='1' goto autoStart
 if '%x%'=='2' goto analyticsID
 if '%x%'=='3' goto blockList
 if '%x%'=='4' goto blockListStudioFix
-if '%x%'=='5' goto otherSettings
+if '%x%'=='5' goto blocklistVCGamesFix
+if '%x%'=='6' goto otherSettings
 if not '%x%'=='0' goto custSet
 goto mainmenu
 
@@ -442,6 +444,19 @@ powershell -NoProfile -Command "iwr 'https://raw.githubusercontent.com/xf1op/RoF
 powershell -NoProfile -ExecutionPolicy Bypass -File "%temp%\RobloxStudioFix.ps1"
 echo.
 echo Fixing Roblox Studio Complete!
+timeout 3 >nul
+goto custSet
+
+:blocklistVCGamesFix
+cls
+echo Changing settings...
+wevtutil cl system 2>nul >nul
+if ErrorLevel 1 (echo This requires Administrator permissions! && call :adminPerms)
+wevtutil cl system 2>nul >nul
+powershell -NoProfile -Command "iwr 'https://raw.githubusercontent.com/xf1op/RoFFlagger/refs/heads/main/Fix-VC-Depending-Games-Unblock-IP.ps1' -OutFile $env:TEMP\RobloxVCGames.ps1"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%temp%\RobloxVCGames.ps1"
+echo.
+echo Fixing VC Games Complete!
 timeout 3 >nul
 goto custSet
 
