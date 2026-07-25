@@ -54,6 +54,7 @@
 0.0.0.0 o293668.ingest.us.sentry.io
 0.0.0.0 pulsar.roblox.com
 0.0.0.0 realtime-signalr.roblox.com
+0.0.0.0 rewarded-video.roblox.com
 0.0.0.0 roblox-poc.global.ssl.fastly.net
 0.0.0.0 sc0.rbxcdn.com
 0.0.0.0 sc0ak.rbxcdn.com
@@ -66,4 +67,7 @@
 0.0.0.0 titanium.roblox.com
 0.0.0.0 tracing.roblox.com
 0.0.0.0 upload.crashes.rbxinfra.com
+0.0.0.0 userads.api.roblox.com
+# breaks studio / vc modified games
 0.0.0.0 usermoderation.roblox.com
+0.0.0.0 voice.roblox.com
