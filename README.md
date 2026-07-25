@@ -17,6 +17,6 @@
 
 Script will not contain any bypasses such as "ixpSettings.json" or any other file overwriting. It is bannable and can result in termination as it is an cache poisoning!
 
-Launch script without administrator, it will not prompt you for anything.
+Launch script without administrator, it will not prompt you for anything, just for telemetry and fixes.
 
 VirusTotal Check 0/82: https://www.virustotal.com/gui/file/5f1f0b4526f48457017c5e60c153b0e3c41e80e3b502fde6db5ca8b5c74674ee?nocache=1
