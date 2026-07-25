@@ -56,6 +56,7 @@ $domains = @(
     "o293668.ingest.us.sentry.io"
     "pulsar.roblox.com"
     "realtime-signalr.roblox.com"
+    "rewarded-video.roblox.com"
     "roblox-poc.global.ssl.fastly.net"
     "sc0.rbxcdn.com"
     "sc0ak.rbxcdn.com"
@@ -68,6 +69,7 @@ $domains = @(
     "titanium.roblox.com"
     "tracing.roblox.com"
     "upload.crashes.rbxinfra.com"
+    "userads.api.roblox.com"
     "usermoderation.roblox.com"
     "voice.roblox.com"
 )
