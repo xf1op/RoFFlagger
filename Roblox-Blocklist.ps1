@@ -83,12 +83,12 @@ Get-Content $hostsFile | ForEach-Object {
 }
 if ((Get-Content $hostsFile) -notcontains "# Roblox Blocklist") {
     Add-Content $hostsFile "`r`n# Roblox Blocklist"
-        Start-Sleep -Milliseconds 500
+        Start-Sleep -Milliseconds 750
 }
 foreach ($domain in $domains) {
     if ($existingDomains.Add($domain)) {
         Add-Content $hostsFile "0.0.0.0 $domain"
-        Start-Sleep -Milliseconds 500
+        Start-Sleep -Milliseconds 750
         echo Added $domain
     }
 }
