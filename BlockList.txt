@@ -55,13 +55,6 @@
 0.0.0.0 realtime-signalr.roblox.com
 0.0.0.0 rewarded-video.roblox.com
 0.0.0.0 roblox-poc.global.ssl.fastly.net
-0.0.0.0 sc0.rbxcdn.com
-0.0.0.0 sc0ak.rbxcdn.com
-0.0.0.0 sc0aws.rbxcdn.com
-0.0.0.0 sc0cfly.rbxcdn.com
-0.0.0.0 sc0gcp.rbxcdn.com
-0.0.0.0 sc0ns1.rbxcdn.com
-0.0.0.0 sc0rcc.rbxcdn.com
 0.0.0.0 silver.roblox.com
 0.0.0.0 titanium.roblox.com
 0.0.0.0 tracing.roblox.com
