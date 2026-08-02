@@ -1,4 +1,3 @@
-# Roblox Blocklist
 0.0.0.0 ams2-128-116-21-3.roblox.com
 0.0.0.0 atl4-128-116-2-3.roblox.com
 0.0.0.0 bom2-128-116-47-3.roblox.com
@@ -68,6 +67,5 @@
 0.0.0.0 tracing.roblox.com
 0.0.0.0 upload.crashes.rbxinfra.com
 0.0.0.0 userads.api.roblox.com
-# breaks studio / vc modified games
 0.0.0.0 usermoderation.roblox.com
 0.0.0.0 voice.roblox.com
