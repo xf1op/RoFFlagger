@@ -1,30 +1,37 @@
-$file = "C:\Windows\System32\drivers\etc\hosts"
+$file = "$env:SystemRoot\System32\drivers\etc\hosts"
 
 $domainsToRemove = @(
     "usermoderation.roblox.com"
 )
 
-$content = Get-Content $file
+Write-Host "Checking hosts..."
 
-$found = $false
+$foundLines = @()
 
-$newContent = $content | Where-Object {
-    $line = $_
+foreach ($domain in $domainsToRemove) {
 
-    foreach ($domain in $domainsToRemove) {
-        if ($line -contains "0.0.0.0 $domain") {
-            $found = $true
-            return $false
-        }
+    $result = @(cmd /c "findstr /I /B ""0.0.0.0 $domain"" ""$file""")
+
+    if ($result) {
+        $foundLines += "0.0.0.0 $domain"
     }
-
-    return $true
 }
 
-if ($found) {
-    $newContent | Set-Content $file
-    Write-Host "Removed, Roblox Studio Fixed!"
+if ($foundLines.Count -eq 0) {
+
+    Write-Host "Not Found, VC Games Work!"
+    exit
 }
-else {
-    Write-Host "Not Found, Roblox Studio Works!"
+
+$content = @(Get-Content $file)
+
+$newContent = foreach ($line in $content) {
+
+    if ($foundLines -notcontains $line.Trim()) {
+        $line
+    }
 }
+
+$newContent | Out-File -FilePath $file -Encoding ASCII
+
+Write-Host "Removed, VC Games Fixed!"
