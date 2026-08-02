@@ -22,9 +22,6 @@
 0.0.0.0 sin4-128-116-50-3.roblox.com
 0.0.0.0 sin6-128-116-54-3.roblox.com
 0.0.0.0 sin6c2-128-116-46-3.roblox.com
-0.0.0.0 abcd.net
-0.0.0.0 abcd.net2
-0.0.0.0 abcd.net3
 0.0.0.0 syd1-128-116-51-3.roblox.com
 0.0.0.0 contacts.roblox.com
 0.0.0.0 ecsv2.roblox.com
