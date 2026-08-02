@@ -17,12 +17,6 @@ foreach ($domain in $domainsToRemove) {
     }
 }
 
-if ($foundLines.Count -eq 0) {
-
-    Write-Host "Not Found, VC Games Work!"
-    exit
-}
-
 $content = @(Get-Content $file)
 
 $newContent = foreach ($line in $content) {
