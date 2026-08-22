@@ -127,4 +127,3 @@
 0.0.0.0 upload.crashes.rbxinfra.com
 0.0.0.0 userads.api.roblox.com
 0.0.0.0 usermoderation.roblox.com
-0.0.0.0 voice.roblox.com
