@@ -2,7 +2,6 @@
 0.0.0.0 atl4-128-116-2-3.roblox.com
 0.0.0.0 bom2-128-116-47-3.roblox.com
 0.0.0.0 cdg2-128-116-13-3.roblox.com
-0.0.0.0 contacts.roblox.com
 0.0.0.0 dfw2-128-116-95-3.roblox.com
 0.0.0.0 ecsv2.roblox.com
 0.0.0.0 edge-term-ams2.roblox.com
