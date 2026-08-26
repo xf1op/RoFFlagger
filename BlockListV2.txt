@@ -52,7 +52,6 @@
 0.0.0.0 lga2-128-116-32-3.roblox.com
 0.0.0.0 lhr4-128-116-31-3.roblox.com
 0.0.0.0 lms.roblox.com
-0.0.0.0 locale.roblox.com
 0.0.0.0 metrics.roblox.com
 0.0.0.0 mia2-128-116-127-3.roblox.com
 0.0.0.0 mia4-128-116-45-3.roblox.com
