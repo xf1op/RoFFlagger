@@ -400,7 +400,7 @@ if '%x%'=='2' goto analyticsID
 if '%x%'=='3' goto blockList
 if '%x%'=='4' goto blockListStudioFix
 if '%x%'=='5' goto blocklistVCGamesFix
-if '%x%'=='5' goto blocklistTranslationFix
+if '%x%'=='6' goto blocklistTranslationFix
 if '%x%'=='7' goto otherSettings
 if not '%x%'=='0' goto custSet
 goto mainmenu
