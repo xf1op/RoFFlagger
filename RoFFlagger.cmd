@@ -388,7 +388,8 @@ echo --- [2] Erase "Google Ads ID" (can't revert)
 echo --- [3] Telemetry Blocker (starts as Admin)
 echo --- [4] Fix Roblox Studio (starts as Admin)
 echo --- [5] Fix VC Games (starts as Admin)
-echo --- [6] Other / Unnecessary Settings
+echo --- [6] Fix Translation (starts as Admin)
+echo --- [7] Other / Unnecessary Settings
 echo.
 echo.
 echo --- [0] Go Back
@@ -399,7 +400,8 @@ if '%x%'=='2' goto analyticsID
 if '%x%'=='3' goto blockList
 if '%x%'=='4' goto blockListStudioFix
 if '%x%'=='5' goto blocklistVCGamesFix
-if '%x%'=='6' goto otherSettings
+if '%x%'=='5' goto blocklistTranslationFix
+if '%x%'=='7' goto otherSettings
 if not '%x%'=='0' goto custSet
 goto mainmenu
 
@@ -428,6 +430,7 @@ wevtutil cl system 2>nul >nul
 if ErrorLevel 1 (echo This requires Administrator permissions! && call :adminPerms)
 wevtutil cl system 2>nul >nul
 powershell -NoProfile -Command "iwr 'https://raw.githubusercontent.com/xf1op/RoFFlagger/refs/heads/main/Roblox-Blocklist.ps1' -OutFile $env:TEMP\RobloxBlocklist.ps1"
+timeout 1 >nul
 powershell -NoProfile -ExecutionPolicy Bypass -File "%temp%\RobloxBlocklist.ps1"
 echo.
 echo Adding Roblox Blocklist complete!
@@ -440,7 +443,8 @@ echo Changing settings...
 wevtutil cl system 2>nul >nul
 if ErrorLevel 1 (echo This requires Administrator permissions! && call :adminPerms)
 wevtutil cl system 2>nul >nul
-powershell -NoProfile -Command "iwr 'https://raw.githubusercontent.com/xf1op/RoFFlagger/refs/heads/main/Fix-Studio-Unblock-IP.ps1' -OutFile $env:TEMP\RobloxStudioFix.ps1"
+powershell -NoProfile -Command "iwr 'https://raw.githubusercontent.com/xf1op/RoFFlagger/refs/heads/main/FixStudio.ps1' -OutFile $env:TEMP\RobloxStudio.ps1"
+timeout 1 >nul
 powershell -NoProfile -ExecutionPolicy Bypass -File "%temp%\RobloxStudioFix.ps1"
 echo.
 echo Fixing Roblox Studio Complete!
@@ -453,8 +457,23 @@ echo Changing settings...
 wevtutil cl system 2>nul >nul
 if ErrorLevel 1 (echo This requires Administrator permissions! && call :adminPerms)
 wevtutil cl system 2>nul >nul
-powershell -NoProfile -Command "iwr 'https://raw.githubusercontent.com/xf1op/RoFFlagger/refs/heads/main/Fix-VC-Depending-Games-Unblock-IP.ps1' -OutFile $env:TEMP\RobloxVCGames.ps1"
+powershell -NoProfile -Command "iwr 'https://raw.githubusercontent.com/xf1op/RoFFlagger/refs/heads/main/FixVC.ps1' -OutFile $env:TEMP\RobloxVC.ps1"
+timeout 1 >nul
 powershell -NoProfile -ExecutionPolicy Bypass -File "%temp%\RobloxVCGames.ps1"
+echo.
+echo Fixing VC Games Complete!
+timeout 3 >nul
+goto custSet
+
+:blocklistTranslationFix
+cls
+echo Changing settings...
+wevtutil cl system 2>nul >nul
+if ErrorLevel 1 (echo This requires Administrator permissions! && call :adminPerms)
+wevtutil cl system 2>nul >nul
+powershell -NoProfile -Command "iwr 'https://raw.githubusercontent.com/xf1op/RoFFlagger/refs/heads/main/FixTranslations.ps1' -OutFile $env:TEMP\RobloxTranslation.ps1"
+timeout 1 >nul
+powershell -NoProfile -ExecutionPolicy Bypass -File "%temp%\RobloxTranslation.ps1"
 echo.
 echo Fixing VC Games Complete!
 timeout 3 >nul
