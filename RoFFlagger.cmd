@@ -5,15 +5,15 @@ color 0f
 mode 54,13
 set x=
 cls
-echo -----             Roblox Flag List Maker         -----
+echo -----           Roblox Flag List Maker           -----
 echo -- [Made by xf1op]
 echo.
-echo --- [1] Create A New Flag List For Roblox
-echo --- [2] Remove All Flag Lists From Roblox
+echo --- [1] Create New FFlag For Roblox
+echo --- [2] Remove FFlags From Roblox Launchers
 echo --- [3] Clear Cached Roblox Game Assets
-echo --- [4] Open All Directories With Flag Lists
-echo --- [5] Set Custom Framerate For Roblox (Closes App)
-echo --- [6] Change Roblox Options (Closes App)
+echo --- [4] Open Folders With FFlags
+echo --- [5] Set Custom FPS For Roblox (Closes App)
+echo --- [6] Change Roblox Options
 echo.
 echo --- [0] Exit script
 echo.
@@ -23,7 +23,7 @@ if '%x%'=='2' goto remove
 if '%x%'=='3' goto clearcache
 if '%x%'=='4' goto opendirs
 if '%x%'=='5' goto customFPS
-if '%x%'=='6' taskkill /f /im RobloxPlayerBeta.exe 2>nul >nul & goto custSet
+if '%x%'=='6' goto custSet
 if not '%x%'=='0' goto mainmenu
 goto end
 
@@ -81,7 +81,7 @@ goto mainmenu
 :freshSet
 cls
 set x=
-echo -----          Create Custom Set (1/10)          -----
+echo -----          Create Custom Set! (1/9)          -----
 echo - DFFlagDebugPauseVoxelizer
 echo -- Disables All Light From Generating In Games
 echo - [1] Disable
@@ -94,7 +94,7 @@ set f1=True
 :cf2
 cls
 set x=
-echo -----          Create Custom Set (2/10)          -----
+echo -----          Create Custom Set! (2/9)          -----
 echo - DFFlagDisableDPIScale
 echo -- Disables Pixel Scaling To Improve Quality
 echo - [1] Disable
@@ -107,7 +107,7 @@ set f2=True
 :cf3
 cls
 set x=
-echo -----          Create Custom Set (3/10)          -----
+echo -----          Create Custom Set! (3/9)          -----
 echo - DFIntDebugFRMQualityLevelOverride
 echo -- Forces Quality Level In Roblox
 echo - [1] Adjustable (-1)
@@ -122,7 +122,7 @@ set f3=21
 :cf4
 cls
 set x=
-echo -----          Create Custom Set (4/10)          -----
+echo -----          Create Custom Set! (4/9)          -----
 echo - DFIntCSGLevelOfDetailSwitchingDistance
 echo -- Object Quality After X Distance Decreases
 echo - [1] Max Quality
@@ -142,7 +142,7 @@ set f4d=0
 :cf5
 cls
 set x=
-echo -----          Create Custom Set (5/10)          -----
+echo -----          Create Custom Set! (5/9)          -----
 echo - DFIntTextureQualityOverride
 echo -- Texture Quality Of All Objects
 echo - [1] Highest 
@@ -160,7 +160,7 @@ set f5=0
 :cf6
 cls
 set x=
-echo -----          Create Custom Set (6/10)          -----
+echo -----          Create Custom Set! (6/9)          -----
 echo - DirectX11, Vulkan Or OpenGL Api 
 echo -- Api Roblox Will Run On
 echo - [1] DirectX11 (Fast, Default)
@@ -177,7 +177,7 @@ set f6c=False
 :cf7
 cls
 set x=
-echo -----          Create Custom Set (7/10)          -----
+echo -----          Create Custom Set! (7/9)          -----
 echo - FFlagDebugSkyGray
 echo -- Gray Sky For Roblox Games
 echo - [1] Disabled
@@ -189,54 +189,41 @@ set f7=True
 :cf8
 cls
 set x=
-echo -----          Create Custom Set (8/10)          -----
-echo - FFlagHandleAltEnterFullscreenManually
-echo -- Exclusive Fullscreen For Roblox (Alt+Enter)
-echo - [1] Disabled (Default?)
-echo - [2] Enabled
-echo.
-set /p x=-- Number: 
-if '%x%'=='1' set "f8=False" && goto cf9
-if not '%x%'=='2' goto cf8
-set f8=True
-:cf9
-cls
-set x=
-echo -----          Create Custom Set (9/10)          -----
+echo -----          Create Custom Set! (8/9)          -----
 echo - FIntDebugForceMSAASamples
 echo -- Makes Corners Of Objects Sharper Or Smoother
 echo - [1] Value 0 (Automatic)
-echo - [2] Value 1
+echo - [2] Value 1 (Best FPS)
 echo - [3] Value 2
 echo - [4] Value 4
-echo - [5] Value 8
+echo - [5] Value 8 (Best Quality)
 echo.
 set /p x=-- Number: 
-if '%x%'=='1' set "f9=0" && goto cf10
-if '%x%'=='2' set "f9=1" && goto cf10
-if '%x%'=='3' set "f9=2" && goto cf10
-if '%x%'=='4' set "f9=4" && goto cf10
-if not '%x%'=='5' goto cf9
-set f9=8
-:cf10
+if '%x%'=='1' set "f9=0" && goto cf9
+if '%x%'=='2' set "f9=1" && goto cf9
+if '%x%'=='3' set "f9=2" && goto cf9
+if '%x%'=='4' set "f9=4" && goto cf9
+if not '%x%'=='5' goto cf8
+set f8=8
+:cf9
 cls
 set x=
-echo -----          Create Custom Set (10/10)         -----
+echo -----          Create Custom Set! (9/9)          -----
 echo - FIntFRMMaxGrassDistance
 echo -- Distance Of Grass In Roblox
 echo - [1] Very Far
 echo - [2] Normal
 echo - [3] Reduced
-echo - [4] No Grass
+echo - [4] No Grass (Best FPS)
 echo.
 set /p x=-- Number: 
-if '%x%'=='1' set "f10=4000" && set "f10b=4000" && set "f10c=10" && goto finish
-if '%x%'=='2' set "f10=250" && set "f10b=100" && set "f10c=5" && goto finish
-if '%x%'=='3' set "f10=100" && set "f10b=50" && set "f10c=0" && goto finish
-if not '%x%'=='4' goto cf10
-set f10=0
-set f10b=0
-set f10c=0
+if '%x%'=='1' set "f9=4000" && set "f9b=4000" && set "f9c=10" && goto finish
+if '%x%'=='2' set "f9=250" && set "f9b=100" && set "f9c=5" && goto finish
+if '%x%'=='3' set "f9=100" && set "f9b=50" && set "f9c=0" && goto finish
+if not '%x%'=='4' goto cf9
+set f9=0
+set f9b=0
+set f9c=0
 goto finish
 
 :quality
@@ -362,12 +349,12 @@ taskkill /f /im RobloxPlayerBeta.exe 2>nul >nul
 cls
 echo -----            Set Custom Framerate            -----
 echo.
-echo --- Write Your Amount Of FPS You Would Like To Have
+echo --- Write Custom FPS
 echo.
-echo - Warning! Roblox Crashes If Value Is Over 1000
+echo - Warning! Roblox Crashes If More Than 1000
 echo.
 taskkill /f /im RobloxPlayerBeta.exe 2>nul >nul
-set /p FPS=Amount: 
+set /p FPS=FPS: 
 cls
 if '%FPS%'=='' set FPS=60
 set l=%LOCALAPPDATA%\Roblox\GlobalBasicSettings_13.xml
@@ -381,32 +368,27 @@ mode 54,12
 set x=
 cls
 echo -----         Customize Roblox Settings!         -----
-echo        (Using Option Twice Sets Settings Back!)
 echo.
-echo --- [1] Auto Start And Tray Icon
-echo --- [2] Erase "Google Ads ID" (can't revert)
-echo --- [3] Telemetry Blocker (starts as Admin)
-echo --- [4] Fix Roblox Studio (starts as Admin)
-echo --- [5] Fix VC Games (starts as Admin)
-echo --- [6] Fix Translation (starts as Admin)
-echo --- [7] Other / Unnecessary Settings
-echo.
+echo --- [1] Change AutoStart And Taskbar Icon
+echo --- [2] Erase "Google Ads ID"
+echo --- [3] Telemetry Blocker (Admin)
+echo --- [4] Fix Roblox Studio (Admin)
+echo --- [5] Fix VC Games (Admin)
+echo --- [6] Fix Translation (Admin)
 echo.
 echo --- [0] Go Back
 echo.
 set /p x=-- Number: 
-if '%x%'=='1' goto autoStart
-if '%x%'=='2' goto analyticsID
-if '%x%'=='3' goto blockList
-if '%x%'=='4' goto blockListStudioFix
-if '%x%'=='5' goto blocklistVCGamesFix
-if '%x%'=='6' goto blocklistTranslationFix
-if '%x%'=='7' goto otherSettings
+if '%x%'=='1' (cls && goto autoStart)
+if '%x%'=='2' (cls && goto analyticsID)
+if '%x%'=='3' (cls && goto blockList)
+if '%x%'=='4' (cls && goto blockListStudioFix)
+if '%x%'=='5' (cls && goto blocklistVCGamesFix)
+if '%x%'=='6' (cls && goto blocklistTranslationFix)
 if not '%x%'=='0' goto custSet
 goto mainmenu
 
 :autoStart
-cls
 set l=%LOCALAPPDATA%\Roblox\LocalStorage\appStorage.json
 echo Changing settings...
 powershell -Command "if ((Get-Content \"%l%\") -notmatch '\"LaunchAtStartup\"') { (Get-Content \"%l%\") -replace '}\s*$',',\"LaunchAtStartup\":\"true\"}' | Set-Content \"%l%\"; Write-Output 'Added missing LaunchAtStartup' }"
@@ -419,16 +401,16 @@ goto custSet
 :analyticsID
 set l=%LOCALAPPDATA%\Roblox\AnalysticsSettings.xml
 echo Changing settings...
+attrib -R "%l%"
 powershell -Command "(Get-Content \"%l%\") -replace '<string name=\"gaID\">.*?</string>', '<string name=\"gaID\">00000000-0000-0000-0000-000000000000</string>' | Set-Content \"%l%\"; Write-Output 'Analytics ID Disabled'"
+attrib +R "%l%"
 timeout 2 >nul
 goto custSet
 
 :blockList
-cls
 echo Changing settings...
 wevtutil cl system 2>nul >nul
-if ErrorLevel 1 (echo This requires Administrator permissions! && call :adminPerms)
-wevtutil cl system 2>nul >nul
+if ErrorLevel 1 (echo Needs Administrator permissions! && call :adminPerms & goto custSet)
 powershell -NoProfile -Command "iwr 'https://raw.githubusercontent.com/xf1op/RoFFlagger/refs/heads/main/Roblox-Blocklist.ps1' -OutFile $env:TEMP\RobloxBlocklist.ps1"
 timeout 1 >nul
 powershell -NoProfile -ExecutionPolicy Bypass -File "%temp%\RobloxBlocklist.ps1"
@@ -438,11 +420,9 @@ timeout 3 >nul
 goto custSet
 
 :blocklistStudioFix
-cls
 echo Changing settings...
 wevtutil cl system 2>nul >nul
-if ErrorLevel 1 (echo This requires Administrator permissions! && call :adminPerms)
-wevtutil cl system 2>nul >nul
+if ErrorLevel 1 (echo Needs Administrator permissions! && call :adminPerms & goto custSet)
 powershell -NoProfile -Command "iwr 'https://raw.githubusercontent.com/xf1op/RoFFlagger/refs/heads/main/FixStudio.ps1' -OutFile $env:TEMP\RobloxStudio.ps1"
 timeout 1 >nul
 powershell -NoProfile -ExecutionPolicy Bypass -File "%temp%\RobloxStudioFix.ps1"
@@ -452,11 +432,9 @@ timeout 3 >nul
 goto custSet
 
 :blocklistVCGamesFix
-cls
 echo Changing settings...
 wevtutil cl system 2>nul >nul
-if ErrorLevel 1 (echo This requires Administrator permissions! && call :adminPerms)
-wevtutil cl system 2>nul >nul
+if ErrorLevel 1 (echo Needs Administrator permissions! && call :adminPerms & goto custSet)
 powershell -NoProfile -Command "iwr 'https://raw.githubusercontent.com/xf1op/RoFFlagger/refs/heads/main/FixVC.ps1' -OutFile $env:TEMP\RobloxVC.ps1"
 timeout 1 >nul
 powershell -NoProfile -ExecutionPolicy Bypass -File "%temp%\RobloxVCGames.ps1"
@@ -466,42 +444,15 @@ timeout 3 >nul
 goto custSet
 
 :blocklistTranslationFix
-cls
 echo Changing settings...
 wevtutil cl system 2>nul >nul
-if ErrorLevel 1 (echo This requires Administrator permissions! && call :adminPerms)
-wevtutil cl system 2>nul >nul
+if ErrorLevel 1 (echo Needs Administrator permissions! && call :adminPerms & goto custSet)
 powershell -NoProfile -Command "iwr 'https://raw.githubusercontent.com/xf1op/RoFFlagger/refs/heads/main/FixTranslations.ps1' -OutFile $env:TEMP\RobloxTranslation.ps1"
 timeout 1 >nul
 powershell -NoProfile -ExecutionPolicy Bypass -File "%temp%\RobloxTranslation.ps1"
 echo.
-echo Fixing VC Games Complete!
+echo Fixing Translations Complete!
 timeout 3 >nul
-goto custSet
-
-:otherSettings
-cls
-echo Changing settings...
-set l=%LOCALAPPDATA%\Roblox\GlobalBasicSettings_13.xml
-set o=AllTutorialsDisabled
-powershell -Command "if ((Get-Content \"%l%\") -match '\"%o%\">false') { (Get-Content \"%l%\") -replace '\"%o%\">false', '\"%o%\">true' | Set-Content \"%l%\"; Write-Output '%o% = true' } elseif ((Get-Content \"%l%\") -match '\"%o%\">true') { (Get-Content \"%l%\") -replace '\"%o%\">true', '\"%o%\">false' | Set-Content \"%l%\"; Write-Output '%o% = false' }"
-set o=ReducedMotion
-powershell -Command "if ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">true') { (Get-Content \"%l%\") -replace '\"%o%\">false', '\"%o%\">true' | Set-Content \"%l%\"; Write-Output '%o% = true' } elseif ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">false') { (Get-Content \"%l%\") -replace '\"%o%\">true', '\"%o%\">false' | Set-Content \"%l%\"; Write-Output '%o% = false' }"
-set o=HasEverUsedVR
-powershell -Command "if ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">true') { (Get-Content \"%l%\") -replace '\"%o%\">false', '\"%o%\">true' | Set-Content \"%l%\"; Write-Output '%o% = true' } elseif ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">false') { (Get-Content \"%l%\") -replace '\"%o%\">true', '\"%o%\">false' | Set-Content \"%l%\"; Write-Output '%o% = false' }"
-set o=RCCProfilerRecordFrameRate
-powershell -Command "if ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">true') { (Get-Content \"%l%\") -replace '\"%o%\">1', '\"%o%\">0' | Set-Content \"%l%\"; Write-Output '%o% = 0' } elseif ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">false') { (Get-Content \"%l%\") -replace '\"%o%\">0', '\"%o%\">1' | Set-Content \"%l%\"; Write-Output '%o% = 1' }"
-set o=RCCProfilerRecordTimeFrame
-powershell -Command "if ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">true') { (Get-Content \"%l%\") -replace '\"%o%\">1', '\"%o%\">0' | Set-Content \"%l%\"; Write-Output '%o% = 0' } elseif ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">false') { (Get-Content \"%l%\") -replace '\"%o%\">0', '\"%o%\">1' | Set-Content \"%l%\"; Write-Output '%o% = 1' }"
-set o=VignetteEnabled
-powershell -Command "if ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">true') { (Get-Content \"%l%\") -replace '\"%o%\">true', '\"%o%\">false' | Set-Content \"%l%\"; Write-Output '%o% = false' } elseif ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">false') { (Get-Content \"%l%\") -replace '\"%o%\">false', '\"%o%\">true' | Set-Content \"%l%\"; Write-Output '%o% = true' }"
-set o=VignetteEnabledCustomOption
-powershell -Command "if ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">true') { (Get-Content \"%l%\") -replace '\"%o%\">true', '\"%o%\">false' | Set-Content \"%l%\"; Write-Output '%o% = false' } elseif ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">false') { (Get-Content \"%l%\") -replace '\"%o%\">false', '\"%o%\">true' | Set-Content \"%l%\"; Write-Output '%o% = true' }"
-set o=VREnabled
-powershell -Command "if ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">true') { (Get-Content \"%l%\") -replace '\"%o%\">true', '\"%o%\">false' | Set-Content \"%l%\"; Write-Output '%o% = false' } elseif ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">false') { (Get-Content \"%l%\") -replace '\"%o%\">false', '\"%o%\">true' | Set-Content \"%l%\"; Write-Output '%o% = true' }"
-set o=HapticStrength
-powershell -Command "if ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">true') { (Get-Content \"%l%\") -replace '\"%o%\">1', '\"%o%\">0' | Set-Content \"%l%\"; Write-Output '%o% = 0' } elseif ((Get-Content \"%l%\") -match '\"AllTutorialsDisabled\">false') { (Get-Content \"%l%\") -replace '\"%o%\">0', '\"%o%\">1' | Set-Content \"%l%\"; Write-Output '%o% = 1' }"
-timeout 2 >nul
 goto custSet
 
 :NoRobloxInstalled
@@ -535,9 +486,10 @@ exit
 
 :adminPerms
 echo.
-echo Would you like to restart script as Administrator?
+echo Do you want to restart as Administrator?
 echo - [y] Yes
-echo - Press Enter to continue without administrator.
+echo.
+echo - Press [Enter] to not.
 set /p s=Letter: 
 if /i '%s%'=='y' (
     powershell -Command "Start-Process -FilePath '%~f0' -Verb RunAs"
