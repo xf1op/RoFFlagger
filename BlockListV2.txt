@@ -55,7 +55,6 @@
 0.0.0.0 metrics.roblox.com
 0.0.0.0 mia2-128-116-127-3.roblox.com
 0.0.0.0 mia4-128-116-45-3.roblox.com
-0.0.0.0 notifications.roblox.com
 0.0.0.0 nrt2-128-116-120-3.roblox.com
 0.0.0.0 o293668.ingest.us.sentry.io
 0.0.0.0 ord2-128-116-48-3.roblox.com
