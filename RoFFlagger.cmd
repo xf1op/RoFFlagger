@@ -437,7 +437,7 @@ wevtutil cl system 2>nul >nul
 if ErrorLevel 1 (echo Needs Administrator permissions! && call :adminPerms & goto custSet)
 powershell -NoProfile -Command "iwr 'https://raw.githubusercontent.com/xf1op/RoFFlagger/refs/heads/main/FixVC.ps1' -OutFile $env:TEMP\RobloxVC.ps1"
 timeout 1 >nul
-powershell -NoProfile -ExecutionPolicy Bypass -File "%temp%\RobloxVCGames.ps1"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%temp%\RobloxVC.ps1"
 echo.
 echo Fixing VC Games Complete!
 timeout 3 >nul
